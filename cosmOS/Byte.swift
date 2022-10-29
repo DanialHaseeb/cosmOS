@@ -10,9 +10,3 @@
 /// A byte is an unsigned integer in the range [0, 255].
 /// Equivalent to `unsigned char` in C.
 typealias Byte = UInt8
-
-extension Byte
-{
-  var x: Int
-  { 2 }
-}
