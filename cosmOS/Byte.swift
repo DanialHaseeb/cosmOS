@@ -18,8 +18,10 @@ extension Byte
   /// - Parameter character: The given character to be converted.
   init(_ character: Character)
   {
-    let ᴀsᴄɪɪValue = character.unicodeScalars.first!.value  // store ᴀsᴄɪɪ value
-    self.init(ᴀsᴄɪɪValue)                                   // output
+    let unicode = character.unicodeScalars  // store unicode scalars
+    let firstCharacter = unicode.first!     // extract first character
+    let ᴀsᴄɪɪValue = firstCharacter.value   // store ᴀsᴄɪɪ value
+    self.init(ᴀsᴄɪɪValue)                   // output
   }
   
   /// A two digit hexadecimal representation of this byte.
@@ -28,7 +30,7 @@ extension Byte
     let hexString = String(self, radix: 16, uppercase: true)  // store hex
     
     guard (self > 0xF) else       // if this byte has only one hex digit:
-    { return ("0" + hexString) }  //   return after prepending "0"
+    { return ("0" + hexString) }  //   prepend "0" to hex, then output
     
     return hexString  // output
   }
