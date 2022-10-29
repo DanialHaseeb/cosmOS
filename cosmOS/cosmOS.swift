@@ -7,5 +7,13 @@
 
 import Foundation
 
-print("Hello, World!")
+@main
+class cosmOS
+{
+  static func main()
+  {
+    print("Hello, World!")
+  }
+}
+
 
