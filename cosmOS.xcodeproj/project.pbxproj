@@ -10,12 +10,14 @@
 		2539A0D9290D9FFD006E0CA4 /* Core.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2539A0D8290D9FFD006E0CA4 /* Core.swift */; };
 		2539A0DB290DA60A006E0CA4 /* Process.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2539A0DA290DA60A006E0CA4 /* Process.swift */; };
 		2539A0DD290DC103006E0CA4 /* Clock.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2539A0DC290DC103006E0CA4 /* Clock.swift */; };
+		2539A0DF290E8D8C006E0CA4 /* MMU.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2539A0DE290E8D8C006E0CA4 /* MMU.swift */; };
+		2539A0E5290EA436006E0CA4 /* Kernel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2539A0E4290EA436006E0CA4 /* Kernel.swift */; };
+		2539A0E7290EA99A006E0CA4 /* Exception.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2539A0E6290EA99A006E0CA4 /* Exception.swift */; };
 		257583CE290C5F8100619A7E /* main.swift in Sources */ = {isa = PBXBuildFile; fileRef = 257583CD290C5F8100619A7E /* main.swift */; };
 		257583D5290C5FAA00619A7E /* Memory.swift in Sources */ = {isa = PBXBuildFile; fileRef = 257583D4290C5FAA00619A7E /* Memory.swift */; };
 		257583D7290C5FCC00619A7E /* Byte.swift in Sources */ = {isa = PBXBuildFile; fileRef = 257583D6290C5FCC00619A7E /* Byte.swift */; };
 		257583DB290CE74000619A7E /* Address.swift in Sources */ = {isa = PBXBuildFile; fileRef = 257583DA290CE74000619A7E /* Address.swift */; };
 		257583DD290CED5F00619A7E /* Word.swift in Sources */ = {isa = PBXBuildFile; fileRef = 257583DC290CED5F00619A7E /* Word.swift */; };
-		257583DF290CEE6C00619A7E /* Page.swift in Sources */ = {isa = PBXBuildFile; fileRef = 257583DE290CEE6C00619A7E /* Page.swift */; };
 		25758403290D545500619A7E /* Programme.swift in Sources */ = {isa = PBXBuildFile; fileRef = 25758402290D545500619A7E /* Programme.swift */; };
 /* End PBXBuildFile section */
 
@@ -33,15 +35,17 @@
 
 /* Begin PBXFileReference section */
 		2539A0D8290D9FFD006E0CA4 /* Core.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Core.swift; sourceTree = "<group>"; };
-		2539A0DA290DA60A006E0CA4 /* Process.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Process.swift; sourceTree = "<group>"; };
+		2539A0DA290DA60A006E0CA4 /* Process.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Process.swift; sourceTree = "<group>"; };
 		2539A0DC290DC103006E0CA4 /* Clock.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Clock.swift; sourceTree = "<group>"; };
+		2539A0DE290E8D8C006E0CA4 /* MMU.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MMU.swift; sourceTree = "<group>"; };
+		2539A0E4290EA436006E0CA4 /* Kernel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Kernel.swift; sourceTree = "<group>"; };
+		2539A0E6290EA99A006E0CA4 /* Exception.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Exception.swift; sourceTree = "<group>"; };
 		257583CA290C5F8100619A7E /* cosmOS */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = cosmOS; sourceTree = BUILT_PRODUCTS_DIR; };
 		257583CD290C5F8100619A7E /* main.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = main.swift; sourceTree = "<group>"; };
 		257583D4290C5FAA00619A7E /* Memory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Memory.swift; sourceTree = "<group>"; };
 		257583D6290C5FCC00619A7E /* Byte.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Byte.swift; sourceTree = "<group>"; };
 		257583DA290CE74000619A7E /* Address.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Address.swift; sourceTree = "<group>"; };
 		257583DC290CED5F00619A7E /* Word.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Word.swift; sourceTree = "<group>"; };
-		257583DE290CEE6C00619A7E /* Page.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Page.swift; sourceTree = "<group>"; };
 		25758402290D545500619A7E /* Programme.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Programme.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -75,11 +79,13 @@
 		257583CC290C5F8100619A7E /* cosmOS */ = {
 			isa = PBXGroup;
 			children = (
+				2539A0E6290EA99A006E0CA4 /* Exception.swift */,
+				2539A0E4290EA436006E0CA4 /* Kernel.swift */,
+				2539A0DE290E8D8C006E0CA4 /* MMU.swift */,
 				2539A0DC290DC103006E0CA4 /* Clock.swift */,
 				2539A0DA290DA60A006E0CA4 /* Process.swift */,
 				2539A0D8290D9FFD006E0CA4 /* Core.swift */,
 				25758402290D545500619A7E /* Programme.swift */,
-				257583DE290CEE6C00619A7E /* Page.swift */,
 				257583DC290CED5F00619A7E /* Word.swift */,
 				257583DA290CE74000619A7E /* Address.swift */,
 				257583D6290C5FCC00619A7E /* Byte.swift */,
@@ -147,14 +153,16 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				2539A0E5290EA436006E0CA4 /* Kernel.swift in Sources */,
 				25758403290D545500619A7E /* Programme.swift in Sources */,
 				257583D7290C5FCC00619A7E /* Byte.swift in Sources */,
 				257583D5290C5FAA00619A7E /* Memory.swift in Sources */,
-				257583DF290CEE6C00619A7E /* Page.swift in Sources */,
 				2539A0DD290DC103006E0CA4 /* Clock.swift in Sources */,
 				257583DD290CED5F00619A7E /* Word.swift in Sources */,
+				2539A0DF290E8D8C006E0CA4 /* MMU.swift in Sources */,
 				2539A0DB290DA60A006E0CA4 /* Process.swift in Sources */,
 				257583DB290CE74000619A7E /* Address.swift in Sources */,
+				2539A0E7290EA99A006E0CA4 /* Exception.swift in Sources */,
 				2539A0D9290D9FFD006E0CA4 /* Core.swift in Sources */,
 				257583CE290C5F8100619A7E /* main.swift in Sources */,
 			);

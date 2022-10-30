@@ -26,6 +26,4 @@ extension Word
     /* Output. */
     self.init(256 * msb  +  lsb)
   }
-  
-  
 }

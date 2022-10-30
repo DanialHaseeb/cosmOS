@@ -11,10 +11,10 @@ import Foundation
 /// A valid sequence of bytes representing instructions that **cosmOS** can execute.
 class Programme
 {
-  // MARK: Errors
+  // MARK: Interrupts
   
-  /// The possible errors that may error during programme initialisation.
-  enum ProgrammeError: Error
+  /// The possible errors that may occur during programme loading.
+  enum Interrupt: Exception
   {
     /// |`Programme`| < 8
     case invalidSize
@@ -50,21 +50,33 @@ class Programme
   /// - Parameters:
   ///   - name: The name of this programme.
   ///   - bytes: The array of bytes of this programme.
-  init(_ name: String, _ bytes: [Byte]) throws
+  init?(_ name: String, _ bytes: [Byte])
   {
+    // TODO: Error Handling
+    
     guard (bytes.count >= 8) else         // if |programme| < 8:
-    { throw ProgrammeError.invalidSize }  //   throw error
+    {
+      Kernel.raise(Interrupt.invalidSize) //   raise interrupt
+      return nil
+    }
     
     priority = bytes[0] // priority <- first byte
     
     guard (0...31).contains(priority) else    // if priority ∉ [0, 31]:
-    { throw ProgrammeError.invalidPriority }  //   throw error
+    {
+      Kernel.raise(Interrupt.invalidPriority) //   raise interrupt
+      return nil
+      
+    }
     
     ID = Word(bytes[1], bytes[2]) // ID <- second & third byte
     
     let dataSize = Word(bytes[3], bytes[4])     // |data| <- fourth & fifth byte
     guard (dataSize  <=  bytes.count - 8) else  // if |data| > |programme| - 8:
-    { throw ProgrammeError.invalidDataSize }    //   throw error
+    {
+      Kernel.raise(Interrupt.invalidDataSize)   //   raise exception
+      return nil
+    }                              //   throw error
     
     if (dataSize == 0)          // if |data| = 0:
     {
@@ -92,10 +104,10 @@ class Programme
   /// - Parameters:
   ///   - name: The name of this programme.
   ///   - characters: The array of ᴀsᴄɪɪ characters of this programme.
-  convenience init(_ name: String, _ characters: [Character]) throws
+  convenience init?(_ name: String, _ characters: [Character])
   {
     let bytes = characters.map { Byte($0) }
-    try self.init(name, bytes)
+    self.init(name, bytes)
   }
   
   /// Creates a programme given its name and associated string of bytes.
@@ -103,20 +115,25 @@ class Programme
   /// - Parameters:
   ///   - name: The name of this programme.
   ///   - byteString: The string of bytes of this programme.
-  convenience init(_ name: String, _ byteString: String) throws
+  convenience init?(_ name: String, _ byteString: String)
   {
     let characters = Array(byteString)
-    try self.init(name, characters)
+    self.init(name, characters)
   }
   
   /// Creates a programme given its associated file ᴜʀʟ.
   ///
   /// - Parameters:
   ///   - ᴜʀʟ: The ᴜʀʟ of this programme's file.
-  convenience init(_ ᴜʀʟ: URL) throws
+  convenience init?(_ ᴜʀʟ: URL)
   {
-    let name = ᴜʀʟ.lastPathComponent
-    let byteString = try String(contentsOf: ᴜʀʟ, encoding: .ascii)
-    try self.init(name, byteString)
+    let name = ᴜʀʟ.lastPathComponent  // store name
+    do
+    {
+      let byteString = try String(contentsOf: ᴜʀʟ, encoding: .ascii)
+      self.init(name, byteString)
+    }
+    catch
+    { return nil }
   }
 }

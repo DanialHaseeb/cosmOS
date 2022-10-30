@@ -35,11 +35,8 @@ struct Address
   /// - Parameter address: The word to be interpreted as an address.
   init(_ address: Word = 0)
   {
-    let address = Int(address)    // convert the parameter into an integer
-    page = address / Page.size    // calculate and store page number
-    offset = address % Page.size  // calculate and store offset
+    let address = Int(address)          // convert the parameter into an integer
+    page = address / Memory.Page.size   // calculate and store page number
+    offset = address % Memory.Page.size // calculate and store offset
   }
-  
-  func add(_ a: Int, _ b: Int) -> Int
-  { a + b }
 }
