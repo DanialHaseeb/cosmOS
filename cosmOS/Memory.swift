@@ -6,7 +6,14 @@
 //
 
 /// The main (dynamic and random-access) memory.
-///
-/// Its size is predetermined by the address space and page size.
-/// Both of these quantities are defined by the virtual machine architecture.
-var memory = Array(repeating: Page(), count: (Address.space / Page.size))
+class Memory
+{
+  /// The number of pages in the main memory.
+  ///
+  /// This property is determined by the address space and page size,
+  /// both of which are defined by the virtual machine architecture.
+  static let size = Address.space / Page.size
+  
+  /// The main memory contents.
+  static var contents = Array(repeating: Page(), count: Memory.size)
+}

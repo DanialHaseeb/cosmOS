@@ -55,7 +55,8 @@ class Programme
     guard (bytes.count >= 8) else         // if |programme| < 8:
     { throw ProgrammeError.invalidSize }  //   throw error
     
-    priority = bytes[0]                       // priority <- first byte
+    priority = bytes[0] // priority <- first byte
+    
     guard (0...31).contains(priority) else    // if priority ∉ [0, 31]:
     { throw ProgrammeError.invalidPriority }  //   throw error
     
