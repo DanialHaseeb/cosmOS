@@ -20,6 +20,9 @@ class Kernel
   /// It is used to ensure only free pages of memory are allocated to new processes.
   static var pages = Set(0..<Memory.size)
   
+  /// The list of all processes ever instantiated by **cosmOS**.
+  static var processes: [Process] = []
+  
   // MARK: Class Functions
   
   /// The universal interrupt handler.

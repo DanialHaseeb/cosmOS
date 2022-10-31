@@ -14,9 +14,7 @@ class MMU
   // MARK: Interrupts
   
   enum Interrupt: Exception
-  {
-    case pageNotInTable
-  }
+  { case pageNotInTable }
   
   // MARK: Stored Properties
   

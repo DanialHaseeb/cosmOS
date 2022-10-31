@@ -31,7 +31,8 @@ class Process
   {
     /// The starting state.
     ///
-    /// A process is in this state when it has been instantiated but has not entered the **cosmOS** dispatcher.
+    /// A process is in this state when it has been instantiated
+    /// but has not entered the **cosmOS** dispatcher.
     case new
     
     /// A process in this state exists in one of the dispatch queues of **cosmOS**.
@@ -78,6 +79,9 @@ class Process
   
   /// The core logs of this process.
   var log = ""
+  
+  /// The accounting information of this process.
+  var time = (execution: 0, waiting: 0)
   
   /// The values of the general-purpose registers of this process.
   var R: [Byte: Core.Register] =

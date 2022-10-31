@@ -25,6 +25,21 @@ class Clock
   /// Time step over to the next system clock cycle.
   static func tick()
   {
+    for process in Kernel.processes
+    {
+      switch process.state
+      {
+        case .ready:
+          process.time.waiting += 1
+        case .fetching:
+          process.time.execution += 1
+        case .executing:
+          process.time.execution += 1
+        default:
+          break
+      }
+    }
+    
     Clock.time += 1
   }
 }
