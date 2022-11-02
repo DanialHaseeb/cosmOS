@@ -36,7 +36,7 @@ struct Address
   init(_ address: Word = 0)
   {
     let address = Int(address)          // convert the parameter into an integer
-    page = address / Memory.Page.size   // calculate and store page number
-    offset = address % Memory.Page.size // calculate and store offset
+    page = address / Memory.Frame.size   // calculate and store page number
+    offset = address % Memory.Frame.size // calculate and store offset
   }
 }

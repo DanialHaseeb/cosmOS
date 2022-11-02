@@ -13,6 +13,9 @@
 		2539A0DF290E8D8C006E0CA4 /* MMU.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2539A0DE290E8D8C006E0CA4 /* MMU.swift */; };
 		2539A0E5290EA436006E0CA4 /* Kernel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2539A0E4290EA436006E0CA4 /* Kernel.swift */; };
 		2539A0E7290EA99A006E0CA4 /* Exception.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2539A0E6290EA99A006E0CA4 /* Exception.swift */; };
+		2539A0EB290F5F4B006E0CA4 /* Queue.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2539A0EA290F5F4B006E0CA4 /* Queue.swift */; };
+		2539A0F729115920006E0CA4 /* PriorityQueue.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2539A0F629115920006E0CA4 /* PriorityQueue.swift */; };
+		2566B32629129ECE00B0548E /* PageTable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2566B32529129ECE00B0548E /* PageTable.swift */; };
 		257583CE290C5F8100619A7E /* main.swift in Sources */ = {isa = PBXBuildFile; fileRef = 257583CD290C5F8100619A7E /* main.swift */; };
 		257583D5290C5FAA00619A7E /* Memory.swift in Sources */ = {isa = PBXBuildFile; fileRef = 257583D4290C5FAA00619A7E /* Memory.swift */; };
 		257583D7290C5FCC00619A7E /* Byte.swift in Sources */ = {isa = PBXBuildFile; fileRef = 257583D6290C5FCC00619A7E /* Byte.swift */; };
@@ -40,6 +43,9 @@
 		2539A0DE290E8D8C006E0CA4 /* MMU.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MMU.swift; sourceTree = "<group>"; };
 		2539A0E4290EA436006E0CA4 /* Kernel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Kernel.swift; sourceTree = "<group>"; };
 		2539A0E6290EA99A006E0CA4 /* Exception.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Exception.swift; sourceTree = "<group>"; };
+		2539A0EA290F5F4B006E0CA4 /* Queue.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Queue.swift; sourceTree = "<group>"; };
+		2539A0F629115920006E0CA4 /* PriorityQueue.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PriorityQueue.swift; sourceTree = "<group>"; };
+		2566B32529129ECE00B0548E /* PageTable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PageTable.swift; sourceTree = "<group>"; };
 		257583CA290C5F8100619A7E /* cosmOS */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = cosmOS; sourceTree = BUILT_PRODUCTS_DIR; };
 		257583CD290C5F8100619A7E /* main.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = main.swift; sourceTree = "<group>"; };
 		257583D4290C5FAA00619A7E /* Memory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Memory.swift; sourceTree = "<group>"; };
@@ -79,6 +85,9 @@
 		257583CC290C5F8100619A7E /* cosmOS */ = {
 			isa = PBXGroup;
 			children = (
+				2566B32529129ECE00B0548E /* PageTable.swift */,
+				2539A0F629115920006E0CA4 /* PriorityQueue.swift */,
+				2539A0EA290F5F4B006E0CA4 /* Queue.swift */,
 				2539A0E6290EA99A006E0CA4 /* Exception.swift */,
 				2539A0E4290EA436006E0CA4 /* Kernel.swift */,
 				2539A0DE290E8D8C006E0CA4 /* MMU.swift */,
@@ -111,6 +120,8 @@
 			dependencies = (
 			);
 			name = cosmOS;
+			packageProductDependencies = (
+			);
 			productName = cosmOS;
 			productReference = 257583CA290C5F8100619A7E /* cosmOS */;
 			productType = "com.apple.product-type.tool";
@@ -139,6 +150,8 @@
 				Base,
 			);
 			mainGroup = 257583C1290C5F8100619A7E;
+			packageReferences = (
+			);
 			productRefGroup = 257583CB290C5F8100619A7E /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
@@ -157,6 +170,8 @@
 				25758403290D545500619A7E /* Programme.swift in Sources */,
 				257583D7290C5FCC00619A7E /* Byte.swift in Sources */,
 				257583D5290C5FAA00619A7E /* Memory.swift in Sources */,
+				2539A0EB290F5F4B006E0CA4 /* Queue.swift in Sources */,
+				2539A0F729115920006E0CA4 /* PriorityQueue.swift in Sources */,
 				2539A0DD290DC103006E0CA4 /* Clock.swift in Sources */,
 				257583DD290CED5F00619A7E /* Word.swift in Sources */,
 				2539A0DF290E8D8C006E0CA4 /* MMU.swift in Sources */,
@@ -164,6 +179,7 @@
 				257583DB290CE74000619A7E /* Address.swift in Sources */,
 				2539A0E7290EA99A006E0CA4 /* Exception.swift in Sources */,
 				2539A0D9290D9FFD006E0CA4 /* Core.swift in Sources */,
+				2566B32629129ECE00B0548E /* PageTable.swift in Sources */,
 				257583CE290C5F8100619A7E /* main.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

@@ -8,9 +8,6 @@
 /// The virtual machine's memory management unit.
 class MMU
 {
-  // MARK: Alias
-  typealias PageTable = [Int: Int]
-  
   // MARK: Interrupts
   
   enum Interrupt: Exception
@@ -19,25 +16,20 @@ class MMU
   // MARK: Stored Properties
   
   /// The page table of the current process.
-  static var pageTable: PageTable = [:]
+  static var pageTable: PageTable = []
   
-  /// Store the given byte at the given address in main memory.
-  ///
-  /// This function is only meant to be used by **cosmOS**
-  /// since it does not enfore any memory protections.
+  /// Stores the given byte at the given address in main memory.
   ///
   /// - Parameters:
   ///   - byte: The byte to be stored in main memory.
   ///   - address: The main memory address at which the byte will be stored.
   static func store(_ byte: Byte, at address: Word)
   {
-    let address = Address(address)          // store address
-    let page = MMU.pageTable[address.page]  // store page
-    let offset = address.offset             // store offset
+    let address = Address(address)        // convert word to address
     
-    if let page
-    { Memory.contents[page][offset] = byte }
-    else
-    { Kernel.raise(Interrupt.pageNotInTable) }
+    let frame  = pageTable[address.page]  // store frame
+    let offset = address.offset           // store offset
+    
+    Memory.contents[frame][offset] = byte // store byte in memory
   }
 }

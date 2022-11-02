@@ -70,7 +70,7 @@ class Process
   let size: Int
   
   /// The page table of this process.
-  let pageTable: MMU.PageTable
+  let pageTable: PageTable
   
   // MARK: Stored Variables
   
@@ -222,4 +222,13 @@ class Process
       }
     }
   }
+}
+
+extension Process: Comparable
+{
+  static func < (lhs: Process, rhs: Process) -> Bool
+  { lhs.ID > rhs.ID }
+  
+  static func == (lhs: Process, rhs: Process) -> Bool
+  { lhs.ID == rhs.ID }
 }
