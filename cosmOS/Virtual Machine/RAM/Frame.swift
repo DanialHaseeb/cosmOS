@@ -1,15 +1,12 @@
 //
-//  Memory.swift
+//  Frame.swift
 //  cosmOS
 //
-//  Created by Danial Haseeb on 29/10/2022.
+//  Created by Danial Haseeb on 03/11/2022.
 //
 
-/// The main (dynamic and random-access) memory.
-class Memory
+extension Memory
 {
-  // MARK: Page
-  
   /// A fixed-length, contiguous block of memory.
   ///
   /// It is the smallest unit of data for memory management by **cosmOS**.
@@ -32,15 +29,4 @@ class Memory
       set { bytes[index] = newValue }
     }
   }
-  
-  // MARK: Class Properties
-  
-  /// The number of pages in the main memory.
-  ///
-  /// This property is determined by the address space and page size,
-  /// both of which are defined by the virtual machine architecture.
-  static let size = Address.space / Memory.Frame.size
-  
-  /// The main memory contents.
-  static var contents = Array(repeating: Frame(), count: Memory.size)
 }

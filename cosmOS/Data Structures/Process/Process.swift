@@ -8,50 +8,10 @@
 /// An instance of a programme that has been loaded into main memory.
 class Process
 {
-  // MARK: Alias
-  
-  /// The ID of every process is a (16-bit) word.
-  typealias ID = Word
-  
-  // MARK: Interrupts
-  
-  enum Interrupt: Exception
-  {
-    /// The interrupt raised when the process ID is already in use by **cosmOS**.
-    case invalidID
-    
-    /// The interrupt raised when there are no free pages remaining in main memory to load this process.
-    case noFreePages
-  }
-  
-  // MARK: State
-  
-  /// The set of states of a process.
-  enum State
-  {
-    /// The starting state.
-    ///
-    /// A process is in this state when it has been instantiated
-    /// but has not entered the **cosmOS** dispatcher.
-    case new
-    
-    /// A process in this state exists in one of the dispatch queues of **cosmOS**.
-    case ready
-    
-    /// A process in this state is fetching (and decoding) an instruction from main memory.
-    case fetching
-    
-    /// A process in this state has its instruction being executed by the virtual core.
-    case executing
-    
-    /// A process may transition to this state, either by completing its execution or by explicitly being killed.
-    case terminated(at: Clock.Time, withError: Bool)
-  }
-  
   // MARK: Class Constant
   
   /// The size of the stack of each process defined by the virtual machine architecture.
-  static let stackSize: Word = 50
+  static let stackSize = 50
   
   // MARK: Stored Constants
   
@@ -89,24 +49,26 @@ class Process
     /*---------------------*/
     // code:  value // name
     /*---------------------*/
-        0x0:    0,  //  R1
-        0x1:    0,  //  R2
-        0x2:    0,  //  R3
-        0x3:    0,  //  R4
-        0x4:    0,  //  R5
-        0x5:    0,  //  R6
-        0x6:    0,  //  R7
-        0x7:    0,  //  R8
-        0x8:    0,  //  R9
-        0x9:    0,  //  R10
-        0xA:    0,  //  R11
-        0xB:    0,  //  R12
-        0xC:    0,  //  R13
-        0xD:    0,  //  R14
-        0xE:    0,  //  R15
-        0xF:    0,  //  R16
+    0x0:    0,  //  R1
+    0x1:    0,  //  R2
+    0x2:    0,  //  R3
+    0x3:    0,  //  R4
+    0x4:    0,  //  R5
+    0x5:    0,  //  R6
+    0x6:    0,  //  R7
+    0x7:    0,  //  R8
+    0x8:    0,  //  R9
+    0x9:    0,  //  R10
+    0xA:    0,  //  R11
+    0xB:    0,  //  R12
+    0xC:    0,  //  R13
+    0xD:    0,  //  R14
+    0xE:    0,  //  R15
+    0xF:    0,  //  R16
     /*---------------------*/
   ]
+  
+  // MARK: Initialisers
   
   /// The values of the special-purpose registers of this process.
   var S: [Word] = Array(repeating: 0, count: 16)
@@ -116,34 +78,33 @@ class Process
   /// - Parameter programme: The given programme.
   init?(_ programme: Programme)
   {
-    self.ID = programme.ID  // store ID
-    
+    self.ID = programme.ID                      // store ID
     guard !(Kernel.IDs.contains(self.ID)) else  // if ID already in use:
     {
       Kernel.raise(Interrupt.invalidID)         //   raise interrupt
-      return nil
+      return nil                                //   return nothing
     }
-    
-    name = programme.name                                   // store name
-    priority = programme.priority                           // store priority
-    size = programme.data.count + programme.code.count + 50 // store size
-    
-    if let pageTable = Kernel.allocate(size)  // if memory is allocated:
-    { self.pageTable = pageTable }            //   store page table
-    else                                      // otherwise:
+    self.size = programme.data.count + programme.code.count + Process.stackSize
+    guard let pageTable = Kernel.allocate(size) else  // if memory is allocated:
     {
-      Kernel.raise(Interrupt.noFreePages)     //   raise interrupt
-      return nil
+      Kernel.raise(Interrupt.noFreeFrames)            //   raise interrupt
+      return nil                                      //   return nothing
     }
+    self.pageTable = pageTable          // store page table
+    self.name = programme.name          // store name
+    self.priority = programme.priority  // store priority
+    
+    Kernel.IDs.insert(self.ID)  // mark ID as reserved
     
     /* Load programme into main memory. */
     
-    let code = Word(programme.code.count),  // |code|
-        data = Word(programme.data.count)   // |data|
+    let code  = Word(programme.code.count), // |code|
+        data  = Word(programme.data.count), // |data|
+        stack = Word(Process.stackSize)     // |stack|
     
     if (code == 0) && (data == 0)
     {
-      let stackBase = Process.stackSize - 1
+      let stackBase = stack - 1
       let stackCounter = stackBase + 1
       
       S[4] = stackBase
@@ -155,7 +116,7 @@ class Process
       let dataBase = codeLimit
       let dataLimit = dataBase
       let stackLimit = dataLimit + 1
-      let stackBase = stackLimit + Process.stackSize - 1
+      let stackBase = stackLimit + stack - 1
       let stackCounter = stackBase
       
       S[2] = codeLimit
@@ -176,7 +137,7 @@ class Process
     {
       let dataLimit = data - 1
       let stackLimit = dataLimit + 1
-      let stackBase = stackLimit + Process.stackSize - 1
+      let stackBase = stackLimit + stack - 1
       let stackCounter = stackBase
       
       S[8] = dataLimit
@@ -197,7 +158,7 @@ class Process
       let dataBase = codeLimit + 1
       let dataLimit = dataBase + data - 1
       let stackLimit = dataLimit + 1
-      let stackBase = stackLimit + Process.stackSize - 1
+      let stackBase = stackLimit + stack - 1
       let stackCounter = stackBase
       
       S[2] = codeLimit
@@ -222,13 +183,17 @@ class Process
       }
     }
   }
-}
-
-extension Process: Comparable
-{
-  static func < (lhs: Process, rhs: Process) -> Bool
-  { lhs.ID > rhs.ID }
   
-  static func == (lhs: Process, rhs: Process) -> Bool
-  { lhs.ID == rhs.ID }
+  /// Initialiser for the kernel task.
+  init(_: Kernel)
+  {
+    self.ID = 0
+    self.name = "cosmOS"
+    
+    self.priority = 0
+    self.size = Memory.size
+    self.state = .executing
+    self.pageTable = Array(0..<Memory.size)
+    self.S[8] = Word(Memory.size)
+  }
 }

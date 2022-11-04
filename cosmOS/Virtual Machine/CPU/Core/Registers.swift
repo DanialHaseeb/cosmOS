@@ -1,25 +1,14 @@
 //
-//  Core.swift
+//  Register.swift
 //  cosmOS
 //
-//  Created by Danial Haseeb on 29/10/2022.
+//  Created by Danial Haseeb on 03/11/2022.
 //
 
-/// The virtual machine's processing core.
-class Core
+extension Core
 {
-  // MARK: Alias
-  
   /// The container for a word value.
   typealias Register = Word
-  
-  // MARK: Stored Properties
-  
-  /// The current state of the virtual machine core.
-  static var state = Process.State.ready
-  
-  /// The execution log of the virtual machine core.
-  static var log: String = ""
   
   /// The virtual machine core's general-purpose registers.
   static var R: [Byte: Core.Register] =

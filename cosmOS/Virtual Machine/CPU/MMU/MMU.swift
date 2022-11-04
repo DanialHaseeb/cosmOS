@@ -8,16 +8,6 @@
 /// The virtual machine's memory management unit.
 class MMU
 {
-  // MARK: Interrupts
-  
-  enum Interrupt: Exception
-  { case pageNotInTable }
-  
-  // MARK: Stored Properties
-  
-  /// The page table of the current process.
-  static var pageTable: PageTable = []
-  
   /// Stores the given byte at the given address in main memory.
   ///
   /// - Parameters:

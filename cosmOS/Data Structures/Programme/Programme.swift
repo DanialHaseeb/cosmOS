@@ -7,27 +7,9 @@
 
 import Foundation
 
-
 /// A valid sequence of bytes representing instructions that **cosmOS** can execute.
 class Programme
 {
-  // MARK: Interrupts
-  
-  /// The possible errors that may occur during programme loading.
-  enum Interrupt: Exception
-  {
-    /// |`Programme`| < 8
-    case invalidSize
-    
-    /// `priority` ∉ [0, 31]
-    case invalidPriority
-    
-    /// |`data`| > |`Programme`|
-    case invalidDataSize
-  }
-  
-  // MARK: Stored Constants
-  
   /// The (file) name of this programme.
   let name: String
   
@@ -35,7 +17,7 @@ class Programme
   let priority: Byte
   
   /// The ID of the process instance of this programme.
-  let ID: Word
+  let ID: Process.ID
   
   /// The raw bytes that represent the data that this programme uses.
   let data: [Byte]

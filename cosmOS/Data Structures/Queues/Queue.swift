@@ -8,32 +8,36 @@
 /// A collection of entities that are maintained in a sequence.
 ///
 /// Queues can be mutated by the addition of entities at one end and the removal of entities from the other.
-struct PriorityQueue<Element: Comparable>
+struct Queue<Element>
 {
-  private var elements: [Element] = Array()
+  var elements: [Element]
   
-  /// Creates a new, empty priority queue.
+  /// Creates a new, empty queue.
   ///
-  /// - Parameter elements: The sequence of elements to turn into a priority queue.
+  /// - Parameter elements: The sequence of elements to turn into a queue.
   init(_ elements: [Element])
   { self.elements = elements }
   
-  /// Enqueues a new element to the priority queue.
-  ///
-  /// - Complexity: O(_n_ log _n_), where _n_ is the length of the priority queue.
-  mutating func enqueue(element: Element)
-  {
-    elements.append(element)
-    elements.sort()
-  }
-  
-  /// Dequeues and returns the highest-priority element of the priority queue.
+  /// Enqueues a new element to the back of the queue.
   ///
   /// Use this method to append a single element to the back of a queue.
   ///
   /// - Complexity: O(1)
+  mutating func enqueue(element: Element)
+  { elements.append(element) }
+  
+  /// Dequeues and returns the first element  of the queue.
+  ///
+  /// - Complexity: O(n)
+  ///
+  /// - Returns: The dequeued element or `nil` if the queue is empty.
   mutating func dequeue() -> Element?
-  { elements.popLast() }
+  {
+    guard !(self.isEmpty) else
+    { return nil }
+    
+    return elements.removeFirst()
+  }
   
   /// The first element of the queue.
   ///
@@ -48,14 +52,14 @@ struct PriorityQueue<Element: Comparable>
   { elements.isEmpty }
 }
 
-extension PriorityQueue: CustomStringConvertible
+extension Queue: CustomStringConvertible
 {
   /// A textual representation of this queue.
   var description: String
   { elements.description }
 }
 
-extension PriorityQueue: ExpressibleByArrayLiteral
+extension Queue: ExpressibleByArrayLiteral
 {
   init(arrayLiteral elements: Element...)
   { self.init(elements) }
