@@ -22,6 +22,9 @@
 		257583DB290CE74000619A7E /* Address.swift in Sources */ = {isa = PBXBuildFile; fileRef = 257583DA290CE74000619A7E /* Address.swift */; };
 		257583DD290CED5F00619A7E /* Word.swift in Sources */ = {isa = PBXBuildFile; fileRef = 257583DC290CED5F00619A7E /* Word.swift */; };
 		25758403290D545500619A7E /* Programme.swift in Sources */ = {isa = PBXBuildFile; fileRef = 25758402290D545500619A7E /* Programme.swift */; };
+		25C3672829150E0D009FF03D /* Memory+CustomStringConvertible.swift in Sources */ = {isa = PBXBuildFile; fileRef = 25C3672729150E0D009FF03D /* Memory+CustomStringConvertible.swift */; };
+		25C3672B29150E67009FF03D /* Frame+CustomStringConvertible.swift in Sources */ = {isa = PBXBuildFile; fileRef = 25C3672A29150E67009FF03D /* Frame+CustomStringConvertible.swift */; };
+		25C3672D29151E8B009FF03D /* Process+CustomStringConvertible.swift in Sources */ = {isa = PBXBuildFile; fileRef = 25C3672C29151E8B009FF03D /* Process+CustomStringConvertible.swift */; };
 		25DCB5612913EBE1004921DD /* Disk.swift in Sources */ = {isa = PBXBuildFile; fileRef = 25DCB5602913EBE1004921DD /* Disk.swift */; };
 		25DCB564291416D8004921DD /* Frame.swift in Sources */ = {isa = PBXBuildFile; fileRef = 25DCB563291416D8004921DD /* Frame.swift */; };
 		25DCB568291417C3004921DD /* Registers.swift in Sources */ = {isa = PBXBuildFile; fileRef = 25DCB567291417C3004921DD /* Registers.swift */; };
@@ -70,6 +73,9 @@
 		257583DA290CE74000619A7E /* Address.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Address.swift; sourceTree = "<group>"; };
 		257583DC290CED5F00619A7E /* Word.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Word.swift; sourceTree = "<group>"; };
 		25758402290D545500619A7E /* Programme.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Programme.swift; sourceTree = "<group>"; };
+		25C3672729150E0D009FF03D /* Memory+CustomStringConvertible.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Memory+CustomStringConvertible.swift"; sourceTree = "<group>"; };
+		25C3672A29150E67009FF03D /* Frame+CustomStringConvertible.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Frame+CustomStringConvertible.swift"; sourceTree = "<group>"; };
+		25C3672C29151E8B009FF03D /* Process+CustomStringConvertible.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Process+CustomStringConvertible.swift"; sourceTree = "<group>"; };
 		25DCB5602913EBE1004921DD /* Disk.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Disk.swift; sourceTree = "<group>"; };
 		25DCB563291416D8004921DD /* Frame.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Frame.swift; sourceTree = "<group>"; };
 		25DCB567291417C3004921DD /* Registers.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Registers.swift; sourceTree = "<group>"; };
@@ -127,11 +133,21 @@
 			path = cosmOS;
 			sourceTree = "<group>";
 		};
+		25C3672929150E56009FF03D /* Frame */ = {
+			isa = PBXGroup;
+			children = (
+				25DCB563291416D8004921DD /* Frame.swift */,
+				25C3672A29150E67009FF03D /* Frame+CustomStringConvertible.swift */,
+			);
+			path = Frame;
+			sourceTree = "<group>";
+		};
 		25DCB562291416A5004921DD /* RAM */ = {
 			isa = PBXGroup;
 			children = (
+				25C3672929150E56009FF03D /* Frame */,
 				257583D4290C5FAA00619A7E /* Memory.swift */,
-				25DCB563291416D8004921DD /* Frame.swift */,
+				25C3672729150E0D009FF03D /* Memory+CustomStringConvertible.swift */,
 			);
 			path = RAM;
 			sourceTree = "<group>";
@@ -204,6 +220,7 @@
 				25DCB57C2914B2A4004921DD /* Process Interrupts.swift */,
 				25DCB57E2914B2CA004921DD /* Process ID.swift */,
 				25DCB5842914B5BE004921DD /* Process+Comparable.swift */,
+				25C3672C29151E8B009FF03D /* Process+CustomStringConvertible.swift */,
 			);
 			path = Process;
 			sourceTree = "<group>";
@@ -281,7 +298,7 @@
 			attributes = {
 				BuildIndependentTargetsInParallel = 1;
 				LastSwiftUpdateCheck = 1400;
-				LastUpgradeCheck = 1400;
+				LastUpgradeCheck = 1410;
 				TargetAttributes = {
 					257583C9290C5F8100619A7E = {
 						CreatedOnToolsVersion = 14.0.1;
@@ -318,6 +335,7 @@
 				25DCB5612913EBE1004921DD /* Disk.swift in Sources */,
 				2539A0E5290EA436006E0CA4 /* Kernel.swift in Sources */,
 				25DCB5892914B85F004921DD /* Scheduler.swift in Sources */,
+				25C3672B29150E67009FF03D /* Frame+CustomStringConvertible.swift in Sources */,
 				25DCB5852914B5BE004921DD /* Process+Comparable.swift in Sources */,
 				25DCB5812914B36E004921DD /* Process Handler.swift in Sources */,
 				25758403290D545500619A7E /* Programme.swift in Sources */,
@@ -326,6 +344,7 @@
 				257583D7290C5FCC00619A7E /* Byte.swift in Sources */,
 				257583D5290C5FAA00619A7E /* Memory.swift in Sources */,
 				25DCB5732914ACFC004921DD /* MMU Handler.swift in Sources */,
+				25C3672829150E0D009FF03D /* Memory+CustomStringConvertible.swift in Sources */,
 				2539A0EB290F5F4B006E0CA4 /* Queue.swift in Sources */,
 				25DCB5762914AE3D004921DD /* Programme Interrupts.swift in Sources */,
 				2539A0F729115920006E0CA4 /* PriorityQueue.swift in Sources */,
@@ -334,6 +353,7 @@
 				25DCB564291416D8004921DD /* Frame.swift in Sources */,
 				2539A0DF290E8D8C006E0CA4 /* MMU.swift in Sources */,
 				25DCB58B2914B8B7004921DD /* Allocator.swift in Sources */,
+				25C3672D29151E8B009FF03D /* Process+CustomStringConvertible.swift in Sources */,
 				25DCB56D291418AF004921DD /* MMU Interrupts.swift in Sources */,
 				2539A0DB290DA60A006E0CA4 /* Process.swift in Sources */,
 				25DCB5782914AE70004921DD /* Programme Handler.swift in Sources */,
@@ -384,6 +404,7 @@
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
 				COPY_PHASE_STRIP = NO;
+				DEAD_CODE_STRIPPING = YES;
 				DEBUG_INFORMATION_FORMAT = dwarf;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
 				ENABLE_TESTABILITY = YES;
@@ -444,6 +465,7 @@
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
 				COPY_PHASE_STRIP = NO;
+				DEAD_CODE_STRIPPING = YES;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				ENABLE_NS_ASSERTIONS = NO;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
@@ -467,7 +489,9 @@
 		257583D2290C5F8100619A7E /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				CODE_SIGN_IDENTITY = "-";
 				CODE_SIGN_STYLE = Automatic;
+				DEAD_CODE_STRIPPING = YES;
 				DEVELOPMENT_TEAM = 97QHFB89S4;
 				ENABLE_HARDENED_RUNTIME = YES;
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -478,7 +502,9 @@
 		257583D3290C5F8100619A7E /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				CODE_SIGN_IDENTITY = "-";
 				CODE_SIGN_STYLE = Automatic;
+				DEAD_CODE_STRIPPING = YES;
 				DEVELOPMENT_TEAM = 97QHFB89S4;
 				ENABLE_HARDENED_RUNTIME = YES;
 				PRODUCT_NAME = "$(TARGET_NAME)";

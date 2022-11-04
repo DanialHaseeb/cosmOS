@@ -26,6 +26,6 @@ extension Process
     case executing
     
     /// A process may transition to this state, either by completing its execution or by explicitly being killed.
-    case terminated(at: Clock.Time, withError: Bool)
+    case terminated
   }
 }

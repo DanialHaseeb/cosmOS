@@ -24,15 +24,13 @@ class Disk
   @discardableResult
   init(at path: String)
   {
-    let ᴜʀʟ = URL(fileURLWithPath: path, isDirectory: true)
-    
     /// Extracts the file URLs from a given directory.
     /// Subdirectories are ignored.
     ///
     /// - Parameter directory: The URL of the directory from which the file URLs will be extracted.
     ///
     /// - Returns An array containing the URL of each file found in the given directory.
-    func extractFileURLs(from directory: URL) -> [URL]
+    func URLs(from directory: URL) -> [URL]
     {
       /* Initialise variables. */
       let fileManager = FileManager.default
@@ -55,6 +53,18 @@ class Disk
       return fileURLs
     }
     
+    let ᴜʀʟ  = URL(fileURLWithPath: path, isDirectory: true)
+    let ᴜʀʟs = URLs(from: ᴜʀʟ)
     
+    for ᴜʀʟ in ᴜʀʟs
+    {
+      let name = ᴜʀʟ.lastPathComponent
+      if let programme = Programme(ᴜʀʟ)
+      {
+        Disk.storage.append(programme)
+        print("✅ Successfully loaded ---", terminator: " ")
+      }
+      print(name)
+    }
   }
 }

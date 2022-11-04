@@ -21,5 +21,5 @@ extension Programme.Interrupt: Handleable
   }
   
   func handle()
-  { print("❌ Error: \(message)") }
+  { print("❌ Error: \(message) ---", terminator: " ") }
 }

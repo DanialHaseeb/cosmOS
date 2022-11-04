@@ -23,7 +23,7 @@ struct Queue<Element>
   /// Use this method to append a single element to the back of a queue.
   ///
   /// - Complexity: O(1)
-  mutating func enqueue(element: Element)
+  mutating func enqueue(_ element: Element)
   { elements.append(element) }
   
   /// Dequeues and returns the first element  of the queue.

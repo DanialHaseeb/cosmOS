@@ -27,15 +27,13 @@ extension Kernel
       return atLeast + maybeOneMore
     }
     
-    var pageTable: PageTable = []             // initialise page table
-    let pages = pagesRequired(for: size)      // calculate pages required
-    for i in (0..<pages)                      // loop through pages required:
+    let size = pagesRequired(for: size)                   // calculate pages
+    var pageTable = PageTable(repeating: 0, count: size)  // create page table
+    for i in (0..<size)                                   // loop through pages:
     {
-      guard !(Kernel.frameTable.isEmpty) else //   if no free pages:
-      { return nil }                          //     return nothing
-      
-      /* Add page table entry. */
-      pageTable[i] = Kernel.frameTable.removeFirst()
+      guard !(Kernel.frameTable.isEmpty) else             //   if no free pages:
+      { return nil }                                      //     return nothing
+      pageTable[i] = Kernel.frameTable.removeFirst()      //   add entry
     }
     return pageTable
   }

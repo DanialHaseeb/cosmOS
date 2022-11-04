@@ -23,4 +23,30 @@ class Kernel
   ///
   /// It has complete control over everything in the virtual machine architecture.
   static var task = Process(Kernel())
+  
+  static var newProcesses: Queue<Process> = []
+  
+  static func load()
+  {
+    print()
+    print("Attempting to load programmes into main memory:")
+    for programme in Disk.storage
+    {
+      let name = programme.name
+      if let process = Process(programme)
+      {
+        newProcesses.enqueue(process)
+        print("✅ Created ---", terminator: " ")
+      }
+      print(name)
+    }
+  }
+  
+  /// Starts the **cosmOS** kernel.
+  @discardableResult
+  init()
+  {
+    Kernel.load()
+    Kernel.enqueue()
+  }
 }

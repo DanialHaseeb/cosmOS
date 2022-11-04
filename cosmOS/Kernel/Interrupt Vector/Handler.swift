@@ -22,7 +22,6 @@ extension Handleable
 
     \(message)
     ------------------------------------------
-    
     """
     
     Kernel.interruptedProcess.log += log

@@ -17,4 +17,7 @@ extension Process.Interrupt: Handleable
         return "Memory full."
     }
   }
+  
+  func handle()
+  { print("❌ Error: \(message) ---", terminator: " ") }
 }

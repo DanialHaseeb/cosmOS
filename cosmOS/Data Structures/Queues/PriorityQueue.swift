@@ -21,7 +21,7 @@ struct PriorityQueue<Element: Comparable>
   /// Enqueues a new element to the priority queue.
   ///
   /// - Complexity: O(_n_ log _n_), where _n_ is the length of the priority queue.
-  mutating func enqueue(element: Element)
+  mutating func enqueue(_ element: Element)
   {
     elements.append(element)
     elements.sort()

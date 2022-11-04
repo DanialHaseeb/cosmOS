@@ -68,10 +68,12 @@ class Process
     /*---------------------*/
   ]
   
-  // MARK: Initialisers
-  
   /// The values of the special-purpose registers of this process.
   var S: [Word] = Array(repeating: 0, count: 16)
+  
+  // TODO: Arguments
+  
+  // MARK: Initialisers
   
   /// Creates a process instance of the given programme.
   ///
@@ -97,6 +99,8 @@ class Process
     Kernel.IDs.insert(self.ID)  // mark ID as reserved
     
     /* Load programme into main memory. */
+    
+    MMU.pageTable = self.pageTable
     
     let code  = Word(programme.code.count), // |code|
         data  = Word(programme.data.count), // |data|
@@ -178,7 +182,7 @@ class Process
       for address in (dataBase...dataLimit)
       {
         let i = Int(address - dataBase)
-        let byte = programme.code[i]
+        let byte = programme.data[i]
         MMU.store(byte, at: address)
       }
     }
@@ -188,7 +192,7 @@ class Process
   init(_: Kernel)
   {
     self.ID = 0
-    self.name = "cosmOS"
+    self.name = "kernelTask"
     
     self.priority = 0
     self.size = Memory.size

@@ -26,4 +26,11 @@ extension Word
     /* Output. */
     self.init(256 * msb  +  lsb)
   }
+  
+  var hex: String
+  {
+    let msb = Byte(self / 256).hex
+    let lsb = Byte(self % 256).hex
+    return (msb + lsb)
+  }
 }

@@ -12,12 +12,12 @@ extension Kernel
   /// It is used to ensure all process IDs are unique.
   static var IDs: Set<Process.ID> = []
   
-  /// The list of all processes ever instantiated by **cosmOS**.
-  static var processes: [Process] = []
-  
   /// The period of time (in system clock cycles) for which a process is allowed to run in
   /// the virtual machine's preemptive multitasking system.
   static var timeQuantum = 8 // cycles
+  
+  /// The number of system clock cycles that have passed since the last time quantum elapsed.
+  static var quantumCounter = 0 // cycles
   
   /// The high-priority job queue maintained by the kernel containing processes to run.
   ///
@@ -41,6 +41,10 @@ extension Kernel
   /// The process that raised the most recent interrupt during execution in the virtual machine core.
   static var interruptedProcess: Process = Kernel.task
   
+  /// Stores the state of the current process, so that it can be restored and resume execution at a later point,
+  /// and then restores a different, previously saved, given process.
+  ///
+  /// - Parameter process: The given process to which context will be switched.
   static func switchContext(to process: Process)
   {
     currentProcess.state = Core.state
@@ -49,5 +53,40 @@ extension Kernel
     
     Core.load(process)
     currentProcess = process
+  }
+  
+  /// Enqueues the newly created processes into their respective **cosmOS** job queues.
+  static func enqueue()
+  {
+    while !(newProcesses.isEmpty)           // loop until no new processes:
+    {
+      let process = newProcesses.dequeue()! //   dequeue process
+      process.state = .ready                //   state <- ready
+      if (process.priority < 16)            //   if high priority:
+      { queue1.enqueue(process) }           //     it goes in queue1
+      else                                  //   otherwise:
+      { queue2.enqueue(process) }           //     it goes in queue2
+    }
+  }
+  
+  static func priorityDispatch()
+  {
+    if (currentProcess.state == .terminated)
+    {
+      let nextProcess = queue1.dequeue()!
+      switchContext(to: nextProcess)
+    }
+  }
+  
+  static func roundRobinDispatch()
+  {
+    if (currentProcess.state == .terminated) || (quantumCounter == timeQuantum)
+    {
+      let nextProcess = queue2.dequeue()!
+      switchContext(to: nextProcess)
+      quantumCounter = 0
+    }
+    else
+    { quantumCounter += 1 }
   }
 }

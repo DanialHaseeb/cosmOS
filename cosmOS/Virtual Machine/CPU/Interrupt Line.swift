@@ -10,9 +10,17 @@ extension Kernel
   /// The universal **cosmOS** interrupt handler.
   static func raise(_ interrupt: any Handleable)
   {
-    interruptedProcess = currentProcess
-    switchContext(to: Kernel.task)
-    interrupt.handle()
-    switchContext(to: interruptedProcess)
+    switch interrupt
+    {
+      case let interrupt as Programme.Interrupt:
+        interrupt.handle()
+      case let interrupt as Process.Interrupt:
+        interrupt.handle()
+      default:
+        interruptedProcess = currentProcess
+        switchContext(to: Kernel.task)
+        interrupt.handle()
+        switchContext(to: interruptedProcess)
+    }
   }
 }
