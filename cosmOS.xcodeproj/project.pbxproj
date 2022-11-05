@@ -66,6 +66,7 @@
 
 /* Begin PBXFileReference section */
 		252A68F22916FEBF00BD49AE /* README.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
+		252A68F3291701C100BD49AE /* cosmOS.doccarchive */ = {isa = PBXFileReference; lastKnownFileType = wrapper; path = cosmOS.doccarchive; sourceTree = "<group>"; };
 		2539A0D8290D9FFD006E0CA4 /* Core.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Core.swift; sourceTree = "<group>"; };
 		2539A0DA290DA60A006E0CA4 /* Process.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Process.swift; sourceTree = "<group>"; };
 		2539A0DC290DC103006E0CA4 /* Clock.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Clock.swift; sourceTree = "<group>"; };
@@ -127,6 +128,7 @@
 			isa = PBXGroup;
 			children = (
 				252A68F22916FEBF00BD49AE /* README.md */,
+				252A68F3291701C100BD49AE /* cosmOS.doccarchive */,
 			);
 			path = docs;
 			sourceTree = "<group>";
