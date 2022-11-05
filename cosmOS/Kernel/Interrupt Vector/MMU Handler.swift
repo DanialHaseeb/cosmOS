@@ -13,6 +13,12 @@ extension MMU.Interrupt: Handleable
     {
       case .pageNotInTable:
         return "MMU couldn't find page in page table."
+      case .dataLimit:
+        return "Given data address exceeds data limit."
+      case .stackOverflow:
+        return "Stack overflow."
+      case .stackUnderflow:
+        return "Stack underflow."
     }
   }
 }

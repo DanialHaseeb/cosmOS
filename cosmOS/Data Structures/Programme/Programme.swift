@@ -34,8 +34,6 @@ class Programme
   ///   - bytes: The array of bytes of this programme.
   init?(_ name: String, _ bytes: [Byte])
   {
-    // TODO: Error Handling
-    
     guard (bytes.count >= 8) else         // if |programme| < 8:
     {
       Kernel.raise(Interrupt.invalidSize) //   raise interrupt

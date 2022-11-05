@@ -9,7 +9,7 @@
 class Core
 {
   /// The current state of the virtual machine core.
-  static var state = Process.State.ready
+  static var state = Process.State.new
   
   /// Copies the process control block of the given process into the virtual machine core's registers.
   static func load(_ process: Process)
@@ -17,5 +17,10 @@ class Core
     state = process.state
     R = process.R
     S = process.S
+  }
+  
+  static func run()
+  {
+    
   }
 }

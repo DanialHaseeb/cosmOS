@@ -16,7 +16,7 @@ extension Handleable
     let log =
     """
     ------------------------------------------
-    ⚠️ Interrupt at time: \(Clock.time)
+    ⚠️ Interrupted at time: \(Clock.time)
     Process: \(Kernel.interruptedProcess.name)
          ID: \(Kernel.interruptedProcess.ID)
 
@@ -25,6 +25,7 @@ extension Handleable
     """
     
     Kernel.interruptedProcess.log += log
+    Kernel.interruptedProcess.state = .terminated
 //    Kernel.currentProcess.log += log
     print(log)
   }

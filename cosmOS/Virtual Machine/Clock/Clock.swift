@@ -11,6 +11,10 @@ class Clock
   /// Time step over to the next system clock cycle.
   static func tick()
   {
+    Kernel.dispatch()
+    
+    Core.run()
+    
     for process in Kernel.readyProcesses
     { process.time.waiting += 1 }
     

@@ -7,16 +7,9 @@
 
 import Foundation
 
+/// The programme responsible for booting **cosmOS**.
 class Bootstrap
 {
-  /// The programme responsible for booting **cosmOS**.
-  func boot()
-  {
-    
-  }
-  
-
-  
   @discardableResult
   init()
   {

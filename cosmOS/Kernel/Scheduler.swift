@@ -69,24 +69,46 @@ extension Kernel
     }
   }
   
-  static func priorityDispatch()
+  /// Controls unattended background programme execution of processes.
+  static func dispatch()
   {
-    if (currentProcess.state == .terminated)
+    func priorityDispatch()
     {
-      let nextProcess = queue1.dequeue()!
-      switchContext(to: nextProcess)
+      if (currentProcess.state == .terminated)
+      {
+        let nextProcess = queue1.dequeue()!
+        switchContext(to: nextProcess)
+      }
     }
-  }
-  
-  static func roundRobinDispatch()
-  {
-    if (currentProcess.state == .terminated) || (quantumCounter == timeQuantum)
+    
+    func roundRobinDispatch()
     {
-      let nextProcess = queue2.dequeue()!
-      switchContext(to: nextProcess)
-      quantumCounter = 0
+      if (currentProcess.state == .terminated)
+      {
+        let nextProcess = queue2.dequeue()!
+        switchContext(to: nextProcess)
+        quantumCounter = 0
+      }
+      else if (quantumCounter == timeQuantum)
+      {
+        let nextProcess = queue2.dequeue()!
+        queue2.enqueue(currentProcess)
+        switchContext(to: nextProcess)
+        quantumCounter = 0
+      }
+      else
+      { quantumCounter += 1 }
     }
-    else
-    { quantumCounter += 1 }
+    
+    guard (queue1.isEmpty) else
+    {
+      priorityDispatch()
+      return
+    }
+    guard (queue2.isEmpty) else
+    {
+      roundRobinDispatch()
+      return
+    }
   }
 }
