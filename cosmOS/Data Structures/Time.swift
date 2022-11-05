@@ -11,7 +11,4 @@ extension Clock
   ///
   /// Measured as a monotonically non-decreasing integer that increments by 1 each clock cycle.
   typealias Time = Int
-  
-  /// The current time on the system clock.
-  static var time = Time(0)
 }

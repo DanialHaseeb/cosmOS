@@ -16,14 +16,11 @@ extension Process
     /// but has not entered the **cosmOS** dispatcher.
     case new
     
-    /// A process in this state exists in one of the dispatch queues of **cosmOS**.
-    case ready
-    
     /// A process in this state is fetching (and decoding) an instruction from main memory.
-    case fetching
+    case fetch
     
     /// A process in this state has its instruction being executed by the virtual core.
-    case executing
+    case execute
     
     /// A process may transition to this state, either by completing its execution or by explicitly being killed.
     case terminated

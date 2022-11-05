@@ -37,6 +37,9 @@ class Process
   /// The state of this process.
   var state = State.new
   
+  /// The next instruction to be executed by this process.
+  var instruction: Instruction = { }
+  
   /// The core logs of this process.
   var log = ""
   
@@ -44,7 +47,7 @@ class Process
   var time = (execution: 0, waiting: 0)
   
   /// The values of the general-purpose registers of this process.
-  var R: [Byte: Core.Register] =
+  var R: [Byte: Register] =
   [
     /*---------------------*/
     // code:  value // name
@@ -192,12 +195,11 @@ class Process
   init(_: Kernel)
   {
     self.ID = 0
-    self.name = "kernelTask"
-    
-    self.priority = 0
-    self.size = Memory.size
-    self.state = .executing
-    self.pageTable = Array(0..<Memory.size)
-    self.S[8] = Word(Memory.size)
+    name = "kernelTask"
+    priority = 0
+    size = Memory.size
+    state = .terminated
+    pageTable = PageTable(0..<Memory.size)
+    S[8] = Word(Address.space - 1)
   }
 }

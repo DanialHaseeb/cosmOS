@@ -38,9 +38,6 @@ extension Kernel
   /// The processing currently executing on the virtual machine's processing core.
   static var currentProcess: Process = Kernel.task
   
-  /// The process that raised the most recent interrupt during execution in the virtual machine core.
-  static var interruptedProcess: Process = Kernel.task
-  
   /// Stores the state of the current process, so that it can be restored and resume execution at a later point,
   /// and then restores a different, previously saved, given process.
   ///
@@ -50,6 +47,8 @@ extension Kernel
     currentProcess.state = Core.state
     currentProcess.R = Core.R
     currentProcess.S = Core.S
+    currentProcess.instruction = Core.execute
+    currentProcess.log += "Loaded out of Core at \(Clock.time).\n"
     
     Core.load(process)
     currentProcess = process
@@ -61,11 +60,18 @@ extension Kernel
     while !(newProcesses.isEmpty)           // loop until no new processes:
     {
       let process = newProcesses.dequeue()! //   dequeue process
-      process.state = .ready                //   state <- ready
+      process.state = .fetch                //   state <- fetch
       if (process.priority < 16)            //   if high priority:
-      { queue1.enqueue(process) }           //     it goes in queue1
+      {
+        queue1.enqueue(process)             //     it goes in queue1
+        process.log += "Enqueued in Queue 1.\n"
+      }
       else                                  //   otherwise:
-      { queue2.enqueue(process) }           //     it goes in queue2
+      {
+        queue2.enqueue(process)             //     it goes in queue2
+        process.log += "Enqueued in Queue 2.\n"
+      }
+      processes.append(process)
     }
   }
   
@@ -74,7 +80,7 @@ extension Kernel
   {
     func priorityDispatch()
     {
-      if (currentProcess.state == .terminated)
+      if (Core.state == .terminated)
       {
         let nextProcess = queue1.dequeue()!
         switchContext(to: nextProcess)
@@ -83,7 +89,7 @@ extension Kernel
     
     func roundRobinDispatch()
     {
-      if (currentProcess.state == .terminated)
+      if (Core.state == .terminated)
       {
         let nextProcess = queue2.dequeue()!
         switchContext(to: nextProcess)
@@ -110,5 +116,12 @@ extension Kernel
       roundRobinDispatch()
       return
     }
+  }
+  
+  static func detectInfiniteLoop()
+  {
+    let infinity = 10000
+    if (currentProcess.time.execution > infinity)
+    { Kernel.raise(Interrupt.infiniteLoop) }
   }
 }

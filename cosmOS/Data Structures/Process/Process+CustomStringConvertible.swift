@@ -14,6 +14,9 @@ extension Process: CustomStringConvertible
     # cosmOS
     ## Process: \(name) | ID: \(self.ID)
     
+    ### Time
+    \(time)
+    
     ### Page Table
     \(pageTable)
     

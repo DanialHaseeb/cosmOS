@@ -1,17 +1,15 @@
 //
-//  Register.swift
+//  Core.swift
 //  cosmOS
 //
-//  Created by Danial Haseeb on 03/11/2022.
+//  Created by Danial Haseeb on 29/10/2022.
 //
 
-extension Core
+/// The virtual machine's processing core.
+class Core
 {
-  /// The container for a word value.
-  typealias Register = Word
-  
   /// The virtual machine core's general-purpose registers.
-  static var R: [Byte: Core.Register] =
+  static var R: [Byte: Register] =
   [
     /*---------------------*/
     // code:  value // name
@@ -36,7 +34,7 @@ extension Core
   ]
   
   /// The virtual machine core's special-purpose registers.
-  static var S: [Core.Register] =
+  static var S: [Register] =
   [
     /*-----------------------------*/
     //             Zero
@@ -88,4 +86,50 @@ extension Core
      ,   0    ,    0    ,    0    ,    0    ,    0    ,    0
     /*------------------------------------------------------*/
   ]
+  /// The current state of the virtual machine core.
+  static var state = Process.State.new
+  
+  /// The current instruction to be executed by the virtual machine core.
+  static var execute: Instruction = { }
+  
+  /// Copies the process control block of the given process into the virtual machine core's registers.
+  static func load(_ process: Process)
+  {
+    MMU.pageTable = process.pageTable
+    state = process.state
+    R = process.R
+    S = process.S
+    execute = process.instruction
+    process.log += "Loaded into Core at \(Clock.time).\n"
+  }
+  
+  static func run()
+  {
+    Kernel.currentProcess.log += "\n\(Clock.time)\nState: \(state)\n"
+    func fetch()
+    {
+      guard let opcode: Byte = MMU.next() else
+      { return }
+      Kernel.currentProcess.log += "Opcode: \(opcode.hex)\n"
+      guard let instruction = ISA[opcode] else
+      {
+        Kernel.raise(Interrupt.invalidOpcode)
+        return
+      }
+      
+      execute = instruction
+    }
+    
+    switch state
+    {
+      case .fetch:
+        state = .execute
+        fetch()
+      case .execute:
+        state = .fetch
+        execute()
+      default:
+        return
+    }
+  }
 }

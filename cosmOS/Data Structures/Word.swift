@@ -77,4 +77,8 @@ extension Word
     let lsb = bytes.first!.hex
     return msb + lsb
   }
+  
+  /// The signed value of this word.
+  var signed: Int16
+  { Int16(bitPattern: self) }
 }

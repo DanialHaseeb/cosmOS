@@ -25,17 +25,25 @@
 		25C3672829150E0D009FF03D /* Memory+CustomStringConvertible.swift in Sources */ = {isa = PBXBuildFile; fileRef = 25C3672729150E0D009FF03D /* Memory+CustomStringConvertible.swift */; };
 		25C3672B29150E67009FF03D /* Frame+CustomStringConvertible.swift in Sources */ = {isa = PBXBuildFile; fileRef = 25C3672A29150E67009FF03D /* Frame+CustomStringConvertible.swift */; };
 		25C3672D29151E8B009FF03D /* Process+CustomStringConvertible.swift in Sources */ = {isa = PBXBuildFile; fileRef = 25C3672C29151E8B009FF03D /* Process+CustomStringConvertible.swift */; };
+		25C3672F291601DA009FF03D /* Instruction.swift in Sources */ = {isa = PBXBuildFile; fileRef = 25C3672E291601DA009FF03D /* Instruction.swift */; };
+		25C36735291615E9009FF03D /* ISA.swift in Sources */ = {isa = PBXBuildFile; fileRef = 25C36734291615E9009FF03D /* ISA.swift */; };
+		25C3673729161B50009FF03D /* Core Interrupts.swift in Sources */ = {isa = PBXBuildFile; fileRef = 25C3673629161B50009FF03D /* Core Interrupts.swift */; };
+		25C367392916218E009FF03D /* ALU Instructions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 25C367382916218E009FF03D /* ALU Instructions.swift */; };
+		25C3673B29162C69009FF03D /* ALU.swift in Sources */ = {isa = PBXBuildFile; fileRef = 25C3673A29162C69009FF03D /* ALU.swift */; };
+		25C3673D29163636009FF03D /* ALU Interrupts.swift in Sources */ = {isa = PBXBuildFile; fileRef = 25C3673C29163636009FF03D /* ALU Interrupts.swift */; };
+		25C3673F29164041009FF03D /* CU.swift in Sources */ = {isa = PBXBuildFile; fileRef = 25C3673E29164041009FF03D /* CU.swift */; };
+		25C36741291648EF009FF03D /* CU Interrupts.swift in Sources */ = {isa = PBXBuildFile; fileRef = 25C36740291648EE009FF03D /* CU Interrupts.swift */; };
+		25C36745291674A2009FF03D /* MMU Instructions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 25C36744291674A2009FF03D /* MMU Instructions.swift */; };
+		25C36747291674AE009FF03D /* CU Instructions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 25C36746291674AE009FF03D /* CU Instructions.swift */; };
+		25C3674A29169BFB009FF03D /* Kernel Interrupts.swift in Sources */ = {isa = PBXBuildFile; fileRef = 25C3674929169BFB009FF03D /* Kernel Interrupts.swift */; };
 		25DCB5612913EBE1004921DD /* Disk.swift in Sources */ = {isa = PBXBuildFile; fileRef = 25DCB5602913EBE1004921DD /* Disk.swift */; };
 		25DCB564291416D8004921DD /* Frame.swift in Sources */ = {isa = PBXBuildFile; fileRef = 25DCB563291416D8004921DD /* Frame.swift */; };
-		25DCB568291417C3004921DD /* Registers.swift in Sources */ = {isa = PBXBuildFile; fileRef = 25DCB567291417C3004921DD /* Registers.swift */; };
+		25DCB568291417C3004921DD /* Register.swift in Sources */ = {isa = PBXBuildFile; fileRef = 25DCB567291417C3004921DD /* Register.swift */; };
 		25DCB56D291418AF004921DD /* MMU Interrupts.swift in Sources */ = {isa = PBXBuildFile; fileRef = 25DCB56C291418AF004921DD /* MMU Interrupts.swift */; };
-		25DCB5732914ACFC004921DD /* MMU Handler.swift in Sources */ = {isa = PBXBuildFile; fileRef = 25DCB5722914ACFC004921DD /* MMU Handler.swift */; };
 		25DCB5762914AE3D004921DD /* Programme Interrupts.swift in Sources */ = {isa = PBXBuildFile; fileRef = 25DCB5752914AE3D004921DD /* Programme Interrupts.swift */; };
-		25DCB5782914AE70004921DD /* Programme Handler.swift in Sources */ = {isa = PBXBuildFile; fileRef = 25DCB5772914AE70004921DD /* Programme Handler.swift */; };
 		25DCB57B2914B284004921DD /* State.swift in Sources */ = {isa = PBXBuildFile; fileRef = 25DCB57A2914B284004921DD /* State.swift */; };
 		25DCB57D2914B2A4004921DD /* Process Interrupts.swift in Sources */ = {isa = PBXBuildFile; fileRef = 25DCB57C2914B2A4004921DD /* Process Interrupts.swift */; };
 		25DCB57F2914B2CA004921DD /* Process ID.swift in Sources */ = {isa = PBXBuildFile; fileRef = 25DCB57E2914B2CA004921DD /* Process ID.swift */; };
-		25DCB5812914B36E004921DD /* Process Handler.swift in Sources */ = {isa = PBXBuildFile; fileRef = 25DCB5802914B36E004921DD /* Process Handler.swift */; };
 		25DCB5852914B5BE004921DD /* Process+Comparable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 25DCB5842914B5BE004921DD /* Process+Comparable.swift */; };
 		25DCB5872914B625004921DD /* Interrupt Line.swift in Sources */ = {isa = PBXBuildFile; fileRef = 25DCB5862914B625004921DD /* Interrupt Line.swift */; };
 		25DCB5892914B85F004921DD /* Scheduler.swift in Sources */ = {isa = PBXBuildFile; fileRef = 25DCB5882914B85F004921DD /* Scheduler.swift */; };
@@ -76,17 +84,25 @@
 		25C3672729150E0D009FF03D /* Memory+CustomStringConvertible.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Memory+CustomStringConvertible.swift"; sourceTree = "<group>"; };
 		25C3672A29150E67009FF03D /* Frame+CustomStringConvertible.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Frame+CustomStringConvertible.swift"; sourceTree = "<group>"; };
 		25C3672C29151E8B009FF03D /* Process+CustomStringConvertible.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Process+CustomStringConvertible.swift"; sourceTree = "<group>"; };
+		25C3672E291601DA009FF03D /* Instruction.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Instruction.swift; sourceTree = "<group>"; };
+		25C36734291615E9009FF03D /* ISA.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ISA.swift; sourceTree = "<group>"; };
+		25C3673629161B50009FF03D /* Core Interrupts.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Core Interrupts.swift"; sourceTree = "<group>"; };
+		25C367382916218E009FF03D /* ALU Instructions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "ALU Instructions.swift"; sourceTree = "<group>"; };
+		25C3673A29162C69009FF03D /* ALU.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ALU.swift; sourceTree = "<group>"; };
+		25C3673C29163636009FF03D /* ALU Interrupts.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "ALU Interrupts.swift"; sourceTree = "<group>"; };
+		25C3673E29164041009FF03D /* CU.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CU.swift; sourceTree = "<group>"; };
+		25C36740291648EE009FF03D /* CU Interrupts.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "CU Interrupts.swift"; sourceTree = "<group>"; };
+		25C36744291674A2009FF03D /* MMU Instructions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "MMU Instructions.swift"; sourceTree = "<group>"; };
+		25C36746291674AE009FF03D /* CU Instructions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "CU Instructions.swift"; sourceTree = "<group>"; };
+		25C3674929169BFB009FF03D /* Kernel Interrupts.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Kernel Interrupts.swift"; sourceTree = "<group>"; };
 		25DCB5602913EBE1004921DD /* Disk.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Disk.swift; sourceTree = "<group>"; };
 		25DCB563291416D8004921DD /* Frame.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Frame.swift; sourceTree = "<group>"; };
-		25DCB567291417C3004921DD /* Registers.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Registers.swift; sourceTree = "<group>"; };
+		25DCB567291417C3004921DD /* Register.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Register.swift; sourceTree = "<group>"; };
 		25DCB56C291418AF004921DD /* MMU Interrupts.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "MMU Interrupts.swift"; sourceTree = "<group>"; };
-		25DCB5722914ACFC004921DD /* MMU Handler.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "MMU Handler.swift"; sourceTree = "<group>"; };
 		25DCB5752914AE3D004921DD /* Programme Interrupts.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Programme Interrupts.swift"; sourceTree = "<group>"; };
-		25DCB5772914AE70004921DD /* Programme Handler.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Programme Handler.swift"; sourceTree = "<group>"; };
 		25DCB57A2914B284004921DD /* State.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = State.swift; sourceTree = "<group>"; };
 		25DCB57C2914B2A4004921DD /* Process Interrupts.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Process Interrupts.swift"; sourceTree = "<group>"; };
 		25DCB57E2914B2CA004921DD /* Process ID.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Process ID.swift"; sourceTree = "<group>"; };
-		25DCB5802914B36E004921DD /* Process Handler.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Process Handler.swift"; sourceTree = "<group>"; };
 		25DCB5842914B5BE004921DD /* Process+Comparable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Process+Comparable.swift"; sourceTree = "<group>"; };
 		25DCB5862914B625004921DD /* Interrupt Line.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Interrupt Line.swift"; sourceTree = "<group>"; };
 		25DCB5882914B85F004921DD /* Scheduler.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Scheduler.swift; sourceTree = "<group>"; };
@@ -127,7 +143,6 @@
 			children = (
 				25DCB58F2914E583004921DD /* Virtual Machine */,
 				25DCB58E2914E523004921DD /* Data Structures */,
-				25DCB5702914A913004921DD /* Kernel */,
 				257583CD290C5F8100619A7E /* main.swift */,
 			);
 			path = cosmOS;
@@ -142,10 +157,20 @@
 			path = Frame;
 			sourceTree = "<group>";
 		};
+		25C36733291615DD009FF03D /* Instructions */ = {
+			isa = PBXGroup;
+			children = (
+				25C36734291615E9009FF03D /* ISA.swift */,
+				25C367382916218E009FF03D /* ALU Instructions.swift */,
+				25C36744291674A2009FF03D /* MMU Instructions.swift */,
+				25C36746291674AE009FF03D /* CU Instructions.swift */,
+			);
+			path = Instructions;
+			sourceTree = "<group>";
+		};
 		25DCB562291416A5004921DD /* RAM */ = {
 			isa = PBXGroup;
 			children = (
-				25C3672929150E56009FF03D /* Frame */,
 				257583D4290C5FAA00619A7E /* Memory.swift */,
 				25C3672729150E0D009FF03D /* Memory+CustomStringConvertible.swift */,
 			);
@@ -155,30 +180,14 @@
 		25DCB56529141756004921DD /* CPU */ = {
 			isa = PBXGroup;
 			children = (
-				25DCB5862914B625004921DD /* Interrupt Line.swift */,
-				25DCB56B29141892004921DD /* MMU */,
-				25DCB5662914177F004921DD /* Core */,
+				25C36733291615DD009FF03D /* Instructions */,
+				2539A0DC290DC103006E0CA4 /* Clock.swift */,
+				2539A0D8290D9FFD006E0CA4 /* Core.swift */,
+				2539A0DE290E8D8C006E0CA4 /* MMU.swift */,
+				25C3673A29162C69009FF03D /* ALU.swift */,
+				25C3673E29164041009FF03D /* CU.swift */,
 			);
 			path = CPU;
-			sourceTree = "<group>";
-		};
-		25DCB5662914177F004921DD /* Core */ = {
-			isa = PBXGroup;
-			children = (
-				2539A0D8290D9FFD006E0CA4 /* Core.swift */,
-				25DCB567291417C3004921DD /* Registers.swift */,
-			);
-			path = Core;
-			sourceTree = "<group>";
-		};
-		25DCB56B29141892004921DD /* MMU */ = {
-			isa = PBXGroup;
-			children = (
-				2539A0DE290E8D8C006E0CA4 /* MMU.swift */,
-				25DCB56C291418AF004921DD /* MMU Interrupts.swift */,
-				2566B32529129ECE00B0548E /* PageTable.swift */,
-			);
-			path = MMU;
 			sourceTree = "<group>";
 		};
 		25DCB5702914A913004921DD /* Kernel */ = {
@@ -196,20 +205,15 @@
 			isa = PBXGroup;
 			children = (
 				2539A0E6290EA99A006E0CA4 /* Handler.swift */,
-				25DCB5722914ACFC004921DD /* MMU Handler.swift */,
-				25DCB5772914AE70004921DD /* Programme Handler.swift */,
-				25DCB5802914B36E004921DD /* Process Handler.swift */,
+				25C3674929169BFB009FF03D /* Kernel Interrupts.swift */,
+				25DCB5752914AE3D004921DD /* Programme Interrupts.swift */,
+				25DCB57C2914B2A4004921DD /* Process Interrupts.swift */,
+				25C3673629161B50009FF03D /* Core Interrupts.swift */,
+				25DCB56C291418AF004921DD /* MMU Interrupts.swift */,
+				25C3673C29163636009FF03D /* ALU Interrupts.swift */,
+				25C36740291648EE009FF03D /* CU Interrupts.swift */,
 			);
 			path = "Interrupt Vector";
-			sourceTree = "<group>";
-		};
-		25DCB5742914AE2E004921DD /* Programme */ = {
-			isa = PBXGroup;
-			children = (
-				25758402290D545500619A7E /* Programme.swift */,
-				25DCB5752914AE3D004921DD /* Programme Interrupts.swift */,
-			);
-			path = Programme;
 			sourceTree = "<group>";
 		};
 		25DCB5792914B26B004921DD /* Process */ = {
@@ -217,7 +221,6 @@
 			children = (
 				2539A0DA290DA60A006E0CA4 /* Process.swift */,
 				25DCB57A2914B284004921DD /* State.swift */,
-				25DCB57C2914B2A4004921DD /* Process Interrupts.swift */,
 				25DCB57E2914B2CA004921DD /* Process ID.swift */,
 				25DCB5842914B5BE004921DD /* Process+Comparable.swift */,
 				25C3672C29151E8B009FF03D /* Process+CustomStringConvertible.swift */,
@@ -228,12 +231,17 @@
 		25DCB58E2914E523004921DD /* Data Structures */ = {
 			isa = PBXGroup;
 			children = (
+				25C3672929150E56009FF03D /* Frame */,
 				25DCB5932914E7C1004921DD /* Queues */,
 				25DCB5792914B26B004921DD /* Process */,
-				25DCB5742914AE2E004921DD /* Programme */,
-				257583DA290CE74000619A7E /* Address.swift */,
-				257583DC290CED5F00619A7E /* Word.swift */,
+				25DCB5912914E775004921DD /* Time.swift */,
 				257583D6290C5FCC00619A7E /* Byte.swift */,
+				257583DC290CED5F00619A7E /* Word.swift */,
+				25DCB567291417C3004921DD /* Register.swift */,
+				257583DA290CE74000619A7E /* Address.swift */,
+				2566B32529129ECE00B0548E /* PageTable.swift */,
+				25C3672E291601DA009FF03D /* Instruction.swift */,
+				25758402290D545500619A7E /* Programme.swift */,
 			);
 			path = "Data Structures";
 			sourceTree = "<group>";
@@ -241,22 +249,14 @@
 		25DCB58F2914E583004921DD /* Virtual Machine */ = {
 			isa = PBXGroup;
 			children = (
-				25DCB5902914E76A004921DD /* Clock */,
+				25DCB5702914A913004921DD /* Kernel */,
 				25DCB562291416A5004921DD /* RAM */,
 				25DCB56529141756004921DD /* CPU */,
 				25DCB5602913EBE1004921DD /* Disk.swift */,
 				25DCB5942914E841004921DD /* Bootstrap.swift */,
+				25DCB5862914B625004921DD /* Interrupt Line.swift */,
 			);
 			path = "Virtual Machine";
-			sourceTree = "<group>";
-		};
-		25DCB5902914E76A004921DD /* Clock */ = {
-			isa = PBXGroup;
-			children = (
-				2539A0DC290DC103006E0CA4 /* Clock.swift */,
-				25DCB5912914E775004921DD /* Time.swift */,
-			);
-			path = Clock;
 			sourceTree = "<group>";
 		};
 		25DCB5932914E7C1004921DD /* Queues */ = {
@@ -332,37 +332,45 @@
 			files = (
 				25DCB5922914E775004921DD /* Time.swift in Sources */,
 				25DCB57F2914B2CA004921DD /* Process ID.swift in Sources */,
+				25C3673F29164041009FF03D /* CU.swift in Sources */,
 				25DCB5612913EBE1004921DD /* Disk.swift in Sources */,
 				2539A0E5290EA436006E0CA4 /* Kernel.swift in Sources */,
 				25DCB5892914B85F004921DD /* Scheduler.swift in Sources */,
 				25C3672B29150E67009FF03D /* Frame+CustomStringConvertible.swift in Sources */,
+				25C36745291674A2009FF03D /* MMU Instructions.swift in Sources */,
 				25DCB5852914B5BE004921DD /* Process+Comparable.swift in Sources */,
-				25DCB5812914B36E004921DD /* Process Handler.swift in Sources */,
 				25758403290D545500619A7E /* Programme.swift in Sources */,
+				25C36735291615E9009FF03D /* ISA.swift in Sources */,
 				25DCB5952914E841004921DD /* Bootstrap.swift in Sources */,
+				25C367392916218E009FF03D /* ALU Instructions.swift in Sources */,
+				25C3673729161B50009FF03D /* Core Interrupts.swift in Sources */,
 				25DCB5872914B625004921DD /* Interrupt Line.swift in Sources */,
 				257583D7290C5FCC00619A7E /* Byte.swift in Sources */,
 				257583D5290C5FAA00619A7E /* Memory.swift in Sources */,
-				25DCB5732914ACFC004921DD /* MMU Handler.swift in Sources */,
+				25C3673D29163636009FF03D /* ALU Interrupts.swift in Sources */,
 				25C3672829150E0D009FF03D /* Memory+CustomStringConvertible.swift in Sources */,
 				2539A0EB290F5F4B006E0CA4 /* Queue.swift in Sources */,
 				25DCB5762914AE3D004921DD /* Programme Interrupts.swift in Sources */,
 				2539A0F729115920006E0CA4 /* PriorityQueue.swift in Sources */,
+				25C3672F291601DA009FF03D /* Instruction.swift in Sources */,
 				2539A0DD290DC103006E0CA4 /* Clock.swift in Sources */,
 				257583DD290CED5F00619A7E /* Word.swift in Sources */,
+				25C36747291674AE009FF03D /* CU Instructions.swift in Sources */,
 				25DCB564291416D8004921DD /* Frame.swift in Sources */,
+				25C3674A29169BFB009FF03D /* Kernel Interrupts.swift in Sources */,
 				2539A0DF290E8D8C006E0CA4 /* MMU.swift in Sources */,
 				25DCB58B2914B8B7004921DD /* Allocator.swift in Sources */,
 				25C3672D29151E8B009FF03D /* Process+CustomStringConvertible.swift in Sources */,
 				25DCB56D291418AF004921DD /* MMU Interrupts.swift in Sources */,
 				2539A0DB290DA60A006E0CA4 /* Process.swift in Sources */,
-				25DCB5782914AE70004921DD /* Programme Handler.swift in Sources */,
-				25DCB568291417C3004921DD /* Registers.swift in Sources */,
+				25C36741291648EF009FF03D /* CU Interrupts.swift in Sources */,
+				25DCB568291417C3004921DD /* Register.swift in Sources */,
 				257583DB290CE74000619A7E /* Address.swift in Sources */,
 				25DCB57D2914B2A4004921DD /* Process Interrupts.swift in Sources */,
 				2539A0E7290EA99A006E0CA4 /* Handler.swift in Sources */,
 				2539A0D9290D9FFD006E0CA4 /* Core.swift in Sources */,
 				2566B32629129ECE00B0548E /* PageTable.swift in Sources */,
+				25C3673B29162C69009FF03D /* ALU.swift in Sources */,
 				257583CE290C5F8100619A7E /* main.swift in Sources */,
 				25DCB57B2914B284004921DD /* State.swift in Sources */,
 			);

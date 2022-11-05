@@ -42,16 +42,42 @@ func inputPath() -> String
   return path // return valid input path
 }
 
-
-
 Bootstrap()
 Disk(at: inputPath())
 Kernel()
 
-//var ᴜʀʟ = URL(fileURLWithPath: "./kernel.md", isDirectory: false)
-//try! "\(Kernel.newProcesses.dequeue()!)".write(to: ᴜʀʟ, atomically: false, encoding: .utf8)
+while
+  (
+    !Kernel.queue1.isEmpty
+    ||
+    !Kernel.queue2.isEmpty
+    ||
+    Kernel.currentProcess.state != .terminated
+  )
+{ Clock.tick() }
 
-//var ᴜʀʟ = URL(fileURLWithPath: "./Memory.md", isDirectory: false)
-//try! "\(Memory())".write(to: ᴜʀʟ, atomically: false, encoding: .utf8)
+for process in Kernel.processes
+{
+  let ᴜʀʟ = URL(fileURLWithPath: "./\(process.name).md", isDirectory: false)
+  try! "\(process)".write(to: ᴜʀʟ, atomically: false, encoding: .utf8)
+}
 
+let ᴜʀʟ = URL(fileURLWithPath: "./Memory.md", isDirectory: false)
+try! "\(Memory())".write(to: ᴜʀʟ, atomically: false, encoding: .utf8)
 
+let godSpeed =
+"""
+.
+.
+.
+Maximum entropy has been reached...
+Head death fast approaches...
+The concept of time itself evaporates...
+And the cosmOS ceases to exist.
+.
+.
+.
+Godspeed. 💫
+"""
+
+print(godSpeed)

@@ -17,10 +17,7 @@ extension Kernel
       case let interrupt as Process.Interrupt:
         interrupt.handle()
       default:
-        interruptedProcess = currentProcess
-        switchContext(to: Kernel.task)
         interrupt.handle()
-        switchContext(to: interruptedProcess)
     }
   }
 }

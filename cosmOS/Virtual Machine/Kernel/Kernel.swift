@@ -24,6 +24,10 @@ class Kernel
   /// It has complete control over everything in the virtual machine architecture.
   static var task = Process(Kernel())
   
+  /// The list of all processes ever instantiated by **cosmOS**.
+  static var processes: [Process] = []
+  
+  /// The queue of newly created processes.
   static var newProcesses: Queue<Process> = []
   
   static func load()

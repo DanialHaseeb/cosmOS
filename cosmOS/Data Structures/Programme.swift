@@ -46,7 +46,6 @@ class Programme
     {
       Kernel.raise(Interrupt.invalidPriority) //   raise interrupt
       return nil
-      
     }
     
     ID = Word(bytes[1], bytes[2]) // ID <- second & third byte
@@ -70,7 +69,7 @@ class Programme
       let bound = base + size   //   data bound index
       
       data = Array(bytes[base..<bound]) // store data
-      base = bound + 1                  // ∵ code starts after data
+      base = bound                      // ∵ code starts after data
       code = Array(bytes[base...])      // store code (if any)
     }
     
